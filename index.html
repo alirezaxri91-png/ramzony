@@ -62,7 +62,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        word-break: break-all;
+        white-space: nowrap;
+        overflow-x: auto;
+        gap: 10px;
     }
     .copy-btn {
         background: #555;
@@ -89,9 +91,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>رمزونی </h1>
+<h1>رمزونی 🔐</h1>
 <div class="card">
-    <div class="logo-box"><img src="https://cdn.imgurl.ir/uploads/l72500_1.png" style="max-height:70px; max-width:100%;" /></div>
+    <div class="logo-box"><img src="https://cdn.imgurl.ir/uploads/n2392__2.png" style="max-height:70px; max-width:100%;" /></div>
 
     <label>سطح رمز عبور:</label>
     <select id="level">
@@ -114,11 +116,32 @@
     <button onclick="generatePasswords()">بساز!</button>
 
     <div id="results"></div>
+
+<style>
+.circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+</style>
 </div>
 
 <script>
 function copyText(id){
     navigator.clipboard.writeText(document.getElementById(id).innerText);
+}
+
+function getStrengthColor(pw){
+    let score = 0;
+    if(pw.length >= 12) score++;
+    if(/[A-Z]/.test(pw)) score++;
+    if(/[0-9]/.test(pw)) score++;
+    if(/[$&@#%*!?]/.test(pw)) score++;
+    if(score === 4) return 'green';
+    if(score === 3) return 'yellow';
+    if(score === 2) return 'orange';
+    return 'red';
 }
 
 function generatePasswords() {
