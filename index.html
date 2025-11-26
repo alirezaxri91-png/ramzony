@@ -180,14 +180,17 @@ function generatePasswords() {
 
     document.getElementById("results").innerHTML = `
         <div class='pw-box'>
+            <div class='circle' style='background: ${getStrengthColor(p1)}'></div>
             <span id='pw1'>${p1}</span>
             <button class='copy-btn' onclick="copyText('pw1')">کپی</button>
         </div>
         <div class='pw-box'>
+            <div class='circle' style='background: ${getStrengthColor(p2)}'></div>
             <span id='pw2'>${p2}</span>
             <button class='copy-btn' onclick="copyText('pw2')">کپی</button>
         </div>
         <div class='pw-box'>
+            <div class='circle' style='background: ${getStrengthColor(p3)}'></div>
             <span id='pw3'>${p3}</span>
             <button class='copy-btn' onclick="copyText('pw3')">کپی</button>
         </div>
